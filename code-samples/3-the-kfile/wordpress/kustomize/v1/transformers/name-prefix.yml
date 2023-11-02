@@ -2,7 +2,7 @@ apiVersion: builtin
 kind: PrefixSuffixTransformer
 metadata:
   name: my-prefix-transformer
-prefix: v1-
-# suffix: -transformers
-fieldSpecs:
+prefix: v1-    
+# suffix: -transformers  #orefux
+fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
 - path: metadata/name
