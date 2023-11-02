@@ -9,3 +9,6 @@ envs:
 # - MYSQL_DATABASE=wordpress
 # files:
 # - obscure=longsecret.txt
+
+
+#NOTE we wont be using such generator file and will make use of convient fieldd more often 
