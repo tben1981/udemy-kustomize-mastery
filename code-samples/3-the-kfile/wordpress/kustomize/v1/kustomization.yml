@@ -7,8 +7,11 @@ commonLabels:
 
 #This is V3 way of doing (most moden, just put namePrefox: )
 #these remove the needs to even have a transformer folder or to right the transformer cod ein 
+#This add to metadata for every main items (IE deployment, service )
+
 namePrefix: v1-
 #namePrefix: v1-convenience-   #Renamed 
+
 
 resources:
 - ../base
