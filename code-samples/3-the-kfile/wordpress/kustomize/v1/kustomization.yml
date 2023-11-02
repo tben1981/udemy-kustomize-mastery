@@ -10,7 +10,9 @@ commonLabels:
 #This add to metadata for every main items (IE deployment, service )
 
 namePrefix: v1-
+
 #namePrefix: v1-convenience-   #Renamed 
+#nameSuffix: -transformers #Suffic append at back 
 
 
 resources:
