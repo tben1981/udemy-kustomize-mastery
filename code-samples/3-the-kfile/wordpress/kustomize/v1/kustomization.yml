@@ -4,7 +4,26 @@ kind: Kustomization
 commonLabels:
   version: v1
 
-namePrefix: v1-
+# namePrefix: v1-
 
 resources:
 - ../base
+
+#V2 way to write transformers thi sis v1-inline-
+
+transformers: 
+- |-
+  apiVersion: builtin
+  kind: PrefixSuffixTransformer
+  metadata:
+    name: my-prefix-transformer
+  prefix: v1-inline-    
+  # suffix: -transformers  #orefux
+  fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
+  - path: metadata/name
+
+
+
+#V1 way to write transformers 
+# transformers:    #to use transformers you need to link from kustomized 
+# - ./transformers/name-prefix   #this links to a file 
