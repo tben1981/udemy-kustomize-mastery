@@ -47,4 +47,4 @@ resources:
 - ../base   # use base folder 
 
 transformers:    #to use transformers you need to link from kustomized 
-- ./transformers/name-prefix   #this links to a file 
+- ./transformers/name-prefix.yml   #this links to a file 
