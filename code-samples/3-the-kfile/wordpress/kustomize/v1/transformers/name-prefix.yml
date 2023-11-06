@@ -1,8 +1,10 @@
 apiVersion: builtin
 kind: PrefixSuffixTransformer
 metadata:
-  name: my-prefix-transformer
+  name: my-prefix-transformer    #this is just the metadata name for this tranformer file 
 prefix: v1-    
 # suffix: -transformers  #orefux
 fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
 - path: metadata/name
+
+#note: This type of file sare seldom used unless a high customised tranformation is needed 

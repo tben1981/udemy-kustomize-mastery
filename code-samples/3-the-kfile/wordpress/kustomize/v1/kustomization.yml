@@ -32,6 +32,19 @@ resources:
 
 
 
-#V1 way to write transformers 
-# transformers:    #to use transformers you need to link from kustomized 
-# - ./transformers/name-prefix   #this links to a file 
+
+
+#V1 : Uses ./transformers/name-prefix 
+    # label.yml = eg of label transformer 
+    # name-prefix.yml  = eg of preffix sufix tarnsfor,er 
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:     # Convneience field with a prebuilt transformation function 
+  version: v1
+
+resources:
+- ../base   # use base folder 
+
+transformers:    #to use transformers you need to link from kustomized 
+- ./transformers/name-prefix   #this links to a file 
