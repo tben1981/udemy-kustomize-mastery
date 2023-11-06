@@ -1,22 +1,25 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
 
-commonLabels:
-  version: v1
+#commonLabels:
+#  version: v1
 
+#namePrefix: v1-
+
+#resources:
+#- ../base
 
 #This is V3 way of doing (most moden, just put namePrefox: )
 #these remove the needs to even have a transformer folder or to right the transformer cod ein 
 #This add to metadata for every main items (IE deployment, service )
 
-namePrefix: v1-
+
 
 #namePrefix: v1-convenience-   #Renamed 
 #nameSuffix: -transformers #Suffic append at back 
 
 
-resources:
-- ../base
+
 
 #V2 way to write transformers thi sis v1-inline-    . This way us not giving way to convience filed
 #t#ransformers: 
