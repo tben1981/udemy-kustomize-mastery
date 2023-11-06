@@ -20,34 +20,45 @@
 
 
 
+#----------------------V1 --------------------------------------
+#V2 way to write transformer/name-prefix directly into the kustomzed file   
 
-#V2 way to write transformers thi sis v1-inline-    . This way us not giving way to convience filed
-#t#ransformers: 
-#- |-
-#  apiVersion: builtin
-#  kind: PrefixSuffixTransformer
-#  metadata:
-#    name: my-prefix-transformer
-#  prefix: v1-inline-    
-#  # suffix: -transformers  #orefux
-#  fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
-#  - path: metadata/name
-
-
-
-
-
-#V1 : Uses ./transformers/name-prefix 
-    # label.yml = eg of label transformer 
-    # name-prefix.yml  = eg of preffix sufix tarnsfor,er 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-commonLabels:     # Convneience field with a prebuilt transformation function 
+commonLabels:     # Convneience field with a pre-built transformation function 
   version: v1
 
 resources:
 - ../base   # use base folder 
 
-transformers:    #to use transformers you need to link from kustomized 
-- ./transformers/name-prefix.yml   #this links to a file 
+transformers:
+- |-
+  apiVersion: builtin
+  kind: PrefixSuffixTransformer
+  metadata:
+    name: my-prefix-transformer
+  prefix: v1-inline-    
+  # suffix: -transformers  #Suffix will attached ot the back  
+  fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
+  - path: metadata/name
+
+
+#Note indentation is critical for this to work
+
+
+#----------------------V1 --------------------------------------
+#V1 : Uses ./transformers/name-prefix 
+    # label.yml = eg of label transformer 
+    # name-prefix.yml  = eg of preffix sufix tarnsfor,er 
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#commonLabels:     # Convneience field with a prebuilt transformation function 
+#  version: v1
+
+#resources:
+#- ../base   # use base folder 
+
+#transformers:    #to use transformers you need to link from kustomized 
+#- ./transformers/name-prefix.yml   #this links to a file 
