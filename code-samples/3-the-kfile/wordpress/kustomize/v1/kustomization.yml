@@ -1,50 +1,52 @@
-#apiVersion: kustomize.config.k8s.io/v1beta1
-#kind: Kustomization
 
-#commonLabels:
-#  version: v1
 
-#namePrefix: v1-
-
-#resources:
-#- ../base
+#----------------------V3 --------------------------------------
 
 #This is V3 way of doing (most moden, just put namePrefox: )
 #these remove the needs to even have a transformer folder or to right the transformer cod ein 
 #This add to metadata for every main items (IE deployment, service )
 
-
-
-#namePrefix: v1-convenience-   #Renamed 
-#nameSuffix: -transformers #Suffic append at back 
-
-
-
-#----------------------V1 --------------------------------------
-#V2 way to write transformer/name-prefix directly into the kustomzed file   
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-commonLabels:     # Convneience field with a pre-built transformation function 
+commonLabels:
   version: v1
 
+namePrefix: v1-convenience-   #Renamed 
+nameSuffix: -transformers     #Suffix append at back 
+
 resources:
-- ../base   # use base folder 
-
-transformers:
-- |-
-  apiVersion: builtin
-  kind: PrefixSuffixTransformer
-  metadata:
-    name: my-prefix-transformer
-  prefix: v1-inline-    
-  # suffix: -transformers  #Suffix will attached ot the back  
-  fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
-  - path: metadata/name
+- ../base
 
 
-#Note indentation is critical for this to work
+
+
+
+#----------------------V2 --------------------------------------
+#V2 way to write transformer/name-prefix directly into the kustomzed file   
+
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#commonLabels:     # Convneience field with a pre-built transformation function 
+#  version: v1
+
+#resources:
+#- ../base   # use base folder 
+
+#transformers:
+#- |-
+#  apiVersion: builtin
+#  kind: PrefixSuffixTransformer
+#  metadata:
+#    name: my-prefix-transformer
+#  prefix: v1-inline-    
+#  # suffix: -transformers  #Suffix will attached ot the back  
+#  fieldSpecs:   #Field to be affected is metadata/name "if base = app-pod" end reuslt is v1-app--pod 
+#  - path: metadata/name
+
+
+#Note indentation is critical for this to work. its quite a hassle and now not commonly used 
 
 
 #----------------------V1 --------------------------------------
