@@ -1,24 +1,3 @@
-#apiVersion: kustomize.config.k8s.io/v1beta1
-#kind: Kustomization
-
-#configMapGenerator:
-#  - name: mysql-config
-#    envs:
-#      - mysql-config.properties
-
-#generatorOptions:
-#  disableNameSuffixHash: true
-#  labels:
-#    generated: "true"
-
-#resources:
-#- deployment.yml
-#- service.yml
-
-
-
-################### First version of file intial 
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -27,8 +6,52 @@ configMapGenerator:
     envs:
       - mysql-config.properties
 
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    generated: "true"
+
 resources:
 - deployment.yml
 - service.yml
+
+#Generator optiosn is a better option where its will apply to all 
+#U can use it to set label keeys too 
+
+#========================================================
+# second version " "
+
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#configMapGenerator:
+#  - name: mysql-config
+#    envs:
+#      - mysql-config.properties
+#    options: 
+#      disableNameSuffixHash: true
+
+#resources:
+#- deployment.yml
+#- service.yml
+
+#In tis eg. Its possible to do a configmap 2 with different options. But 
+# this will get hard to managed, a better pratice will be V3 where we use generator options
+
+
+
+################### First version of file intial 
+
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#configMapGenerator:
+#  - name: mysql-config
+#    envs:
+#      - mysql-config.properties
+
+#resources:
+#- deployment.yml
+#- service.yml
 
 #This version generate a config map that had a randm 
