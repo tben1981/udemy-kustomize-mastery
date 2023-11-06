@@ -1,4 +1,18 @@
 
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  version: v1
+
+namePrefix: v1- 
+
+resources:
+- ../base
+
+#this is the final one that the lecture left with 
+
+
 
 #----------------------V3 --------------------------------------
 
@@ -6,17 +20,17 @@
 #these remove the needs to even have a transformer folder or to right the transformer cod ein 
 #This add to metadata for every main items (IE deployment, service )
 
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
 
-commonLabels:
+#commonLabels:
   version: v1
 
-namePrefix: v1-convenience-   #Renamed 
-nameSuffix: -transformers     #Suffix append at back 
+#namePrefix: v1-convenience-   #Renamed 
+#nameSuffix: -transformers     #Suffix append at back 
 
-resources:
-- ../base
+#resources:
+#- ../base
 
 
 
