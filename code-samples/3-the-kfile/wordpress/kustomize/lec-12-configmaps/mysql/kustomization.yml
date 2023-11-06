@@ -18,6 +18,27 @@ resources:
 #Generator optiosn is a better option where its will apply to all 
 #U can use it to set label keeys too 
 
+
+# Usig literals as EG 
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#configMapGenerator:
+#  - name: mysql-config
+#    literals:
+#      - MYSQL_ROOT_PASSWORD=admin
+#      - MYSQL_DATABASE=wordpress
+
+
+#generatorOptions:
+#  disableNameSuffixHash: true
+#  labels:
+#    generated: "true"
+
+#resources:
+#- deployment.yml
+#- service.yml
+
 #========================================================
 # second version " "
 
