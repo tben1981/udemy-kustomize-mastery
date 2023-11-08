@@ -6,7 +6,7 @@ commonLabels:
 
 namePrefix: lec-15-
 
-namespace: lec-15
+namespace: lec-15   #This will use the name space 
 
 # transformers:
 #   - ./transformers/namespace.yml
@@ -14,4 +14,4 @@ namespace: lec-15
 resources:
 - mysql
 - ../base
-- namespace.yml 
+#- namespace.yml   #namespace is already defined in this file, without it if ns not created will have error 

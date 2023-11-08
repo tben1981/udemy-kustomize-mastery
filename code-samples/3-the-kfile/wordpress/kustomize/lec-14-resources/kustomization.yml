@@ -9,3 +9,8 @@ namePrefix: lec-14-
 resources:
 - mysql
 - https://github.com/galonge/udemy-kustomize-mastery.git//code-samples/3-the-kfile/wordpress/kustomize/base
+
+#As this is github directory u need to add .git// (before your specific the subdirectories in your project )
+
+#ITs possible to use the https to get the base instead of referenning from directory 
+#- ../base # this is how the directory is rerefence previously. 

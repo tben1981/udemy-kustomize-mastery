@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v1    #Thiis yaml file define the name space
 kind: Namespace
 metadata:
   name: lec-15
