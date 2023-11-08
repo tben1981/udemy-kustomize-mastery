@@ -2,7 +2,7 @@
 #kind: Kustomization
 
 #commonLabels:   #Selector and labels and selector re updated by default (risky) may affect selector function 
-   version: lec-16 
+#   version: lec-16 
 
 #commonAnnotations:
 #  annotated-by: kustomize
@@ -22,8 +22,11 @@ kind: Kustomization
 labels: 
 - pairs:
     version: lec-16
-  includeSelectors: false
-  includeTemplates: true
+  includeSelectors: false    #for selectors  
+  includeTemplates: false    # for templates 
+
+#Note: after this you will still see lec-16 : thats beacuse base had common labels turn on 
+#Advisable not to set this in base 
 
 commonAnnotations:
   annotated-by: kustomize
