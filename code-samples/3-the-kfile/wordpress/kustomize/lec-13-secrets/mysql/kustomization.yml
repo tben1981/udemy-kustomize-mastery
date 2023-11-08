@@ -1,12 +1,37 @@
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#secretGenerator:         # Main difference between secret and config generattor 
+#  - name: mysql-secret
+#    envs:
+#      - mysql-secret.properties
+
+#generatorOptions:
+#  disableNameSuffixHash: true
+#  labels:
+#    generated: "true"
+
+#resources:
+#- deployment.yml
+#- service.yml
+
+#This only genrates opaque type of secret (base 64 enocded)
+#but note, if you ssh to the pod, do printenv you can see the secret decoded 
+
+#+++++++++++++++++++++++++++++++++++++++++++++
+
+#this is an exaple that uses literal as secrets 
+
+# Usig literals as EG 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-secretGenerator:         # Main difference between secret and config generattor 
-  - name: mysql-secret
-    envs:
-      - mysql-secret.properties
+secretGenerator: 
+  - name: mysql-config
+    literals:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=wordpress
 
-#This only genrates opaque type of secret (base 64 enocded)
 
 generatorOptions:
   disableNameSuffixHash: true
