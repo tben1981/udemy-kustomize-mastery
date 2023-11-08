@@ -3,4 +3,7 @@ kind: NamespaceTransformer
 metadata:
   name: only-if-unset
   namespace: lec-15
-unsetOnly: true
+unsetOnly: true   # only attached this value if its not defined 
+# if mysql/kustomization had object with namespace set, it will not be overwritten 
+#if set false , will behave like common filed and overwrite everything 
+
