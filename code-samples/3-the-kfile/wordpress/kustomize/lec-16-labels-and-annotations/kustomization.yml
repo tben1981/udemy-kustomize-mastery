@@ -1,28 +1,8 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-commonLabels:   #Selector and labels and selector re updated by default (risky)
-   version: lec-16
-
-commonAnnotations:
-  annotated-by: kustomize
-
-namePrefix: lec-16-
-
-resources:
-- mysql
-- ../base
-
-
-#  V1 This is done using labels field, it update labels only (selectors template are optional )
-
 #apiVersion: kustomize.config.k8s.io/v1beta1
 #kind: Kustomization
 
-#- pairs:
-#    version: lec-16
-#  includeSelectors: false
-#  includeTemplates: true
+#commonLabels:   #Selector and labels and selector re updated by default (risky) may affect selector function 
+   version: lec-16 
 
 #commonAnnotations:
 #  annotated-by: kustomize
@@ -32,3 +12,24 @@ resources:
 #resources:
 #- mysql
 #- ../base
+
+
+#  V1 This is done using labels field, it update labels only (selectors template are optional )
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels: 
+- pairs:
+    version: lec-16
+  includeSelectors: false
+  includeTemplates: true
+
+commonAnnotations:
+  annotated-by: kustomize
+
+namePrefix: lec-16-
+
+resources:
+- mysql
+- ../base
