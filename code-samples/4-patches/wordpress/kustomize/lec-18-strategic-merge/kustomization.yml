@@ -1,5 +1,7 @@
-# V2: Remove unnecessary meta data on target, 
-# In the most basic level. you only need kind and name to indentify  
+#=========================================================
+
+# V3: Demonstrate how to use strategic merge conviennece field  
+#tis version uses the patch limit.yml files to do the patching  
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -13,17 +15,44 @@ labels:
 namePrefix: lec-18-
 namespace: lec-18
 
-patches:
-- path: patches/patch-limits.yml # patch file
-  target:   #Set of metadata used by kustomised to find the resource 
-    kind: Deployment
-    name: mysql
- 
+patchesStrategicMerge:
+  - patches/patch-limits.yml 
 
 resources:
 - mysql
 - ../base
 - namespace.yml
+
+
+
+#=========================================================
+
+# V2: Remove unnecessary meta data on target, 
+# In the most basic level. you only need kind and name to indentify  
+
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#labels:
+#- pairs:
+#    version: lec-18
+#  includeTemplates: true
+
+
+#namePrefix: lec-18-
+#namespace: lec-18
+
+#patches:
+#- path: patches/patch-limits.yml # patch file
+#  target:   #Set of metadata used by kustomised to find the resource 
+#    kind: Deployment
+#    name: mysql
+ 
+
+#resources:
+#- mysql
+#- ../base
+#- namespace.yml
 
 
 #===============================================
@@ -52,6 +81,7 @@ resources:
 #    labelSelector: "app=mysql"
 #    annotationSelector: "annotated-by=kustomize"
 
+# NOTE: If you choose incorrect metadata (wrong group or type) kustomise will just ignore, no patchng done 
 
 #resources:
 #- mysql
