@@ -1,3 +1,6 @@
+# V2: Remove unnecessary meta data on target, 
+# In the most basic level. you only need kind and name to indentify  
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -10,8 +13,55 @@ labels:
 namePrefix: lec-18-
 namespace: lec-18
 
-patchesStrategicMerge:
-  - patches/patch-limits.yml
+patches:
+- path: patches/patch-limits.yml # patch file
+  target:   #Set of metadata used by kustomised to find the resource 
+    kind: Deployment
+    name: mysql
+ 
+
+resources:
+- mysql
+- ../base
+- namespace.yml
+
+
+#===============================================
+# V1 :Basic patch, file in patches/patch-limit.yml , updating mysql deplyoment
+#Patching is usually the last rsort as it will protentially mkes ur yml file hard to managed/  
+
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+
+#labels:
+#- pairs:
+#    version: lec-18
+#  includeTemplates: true
+
+
+#namePrefix: lec-18-
+#namespace: lec-18
+
+#patches:
+#- path: patches/patch-limits.yml # patch file
+#  target:   #Set of metadata used by kustomised to find the resource 
+#    group: apps   #group and rversions are seen in kubectl api-resources , api version contains [group/version]
+#    version: v1
+#    kind: Deployment
+#    name: mysql
+#    labelSelector: "app=mysql"
+#    annotationSelector: "annotated-by=kustomize"
+
+
+#resources:
+#- mysql
+#- ../base
+#- namespace.yml
+
+#====================================
+
+#patchesStrategicMerge:
+#  - patches/patch-limits.yml
 
 # patches:
 # - path: patches/patch-limits.yml # patch file
@@ -48,7 +98,3 @@ patchesStrategicMerge:
 #       labelSelector: "app=mysql"
 #       annotationSelector: "annotated-by=kustomize"
 
-resources:
-- mysql
-- ../base
-- namespace.yml
